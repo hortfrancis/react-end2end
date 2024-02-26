@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ShowList } from '../';
+import { useSearch } from '../../contexts';
 
 export default function SearchWidget() {
     const [inputValue, setInputValue] = useState('');
     const [searchString, setSearchString] = useState('');
-    const [showData, setShowData] = useState([]);
+    const { setShowData } = useSearch();
 
     useEffect(() => {
         (async () => {
@@ -30,7 +31,7 @@ export default function SearchWidget() {
                     onChange={(event) => setInputValue(event.target.value)} />
                 <button type="submit">Search</button>
             </form>
-            <ShowList shows={showData} />
+            <ShowList />
 
         </>
     )
